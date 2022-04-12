@@ -1,0 +1,19 @@
+#function_encryption
+def enc(word1,shift):
+    word2=""
+    l=[]
+    for i in word1:
+        l.append(i)
+    for i in range(len(l)):
+        if chr(ord(l[i].lower())+shift)>="a" and chr(ord(l[i].lower())+shift)<="z":
+            word2+=chr(ord(l[i])+shift)
+        else:
+            a=shift-(ord('z')-ord(l[i]))-1
+            if l[i].isupper():
+                word2+=chr(ord('A')+a)
+            else:
+                word2+=chr(ord('a')+a)
+    return(word2)
+x=str(input("Enter word to shift: "))
+s=int(input("Enter shift value: "))
+print(enc(x,s))
