@@ -8,7 +8,7 @@ def enc(word1,shift):
         if chr(ord(l[i].lower())+shift)>="a" and chr(ord(l[i].lower())+shift)<="z":
             word2+=chr(ord(l[i])+shift)
         else:
-            a=shift-(ord('z')-ord(l[i]))-1
+            a=shift-(ord('z')-ord(l[i].lower()))-1
             if l[i].isupper():
                 word2+=chr(ord('A')+a)
             else:
