@@ -1,0 +1,8 @@
+# default argument mentioned at last only
+# keyword on calling a function should be at last without ant contradiction of values
+
+def add(a,b,c,d=10):
+    sum=a+b+c+d
+    print(sum)
+    
+add(1,2,3)
