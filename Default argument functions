@@ -1,5 +1,5 @@
 # default argument mentioned at last only
-# keyword on calling a function should be at last without ant contradiction of values
+# keyword on calling a function should be at last without any contradiction of values (or evrything is keyword)
 
 def add(a,b,c,d=10):
     sum=a+b+c+d
