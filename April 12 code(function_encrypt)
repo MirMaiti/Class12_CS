@@ -1,4 +1,4 @@
-#function_encryption
+#function_encryption (No negative shift)
 def enc(word1,shift):
     word2=""
     l=[]
