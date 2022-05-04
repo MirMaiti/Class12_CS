@@ -1,0 +1,17 @@
+def fib(n):
+    a=1
+    b=1
+    if n==1:
+        return(a)
+    if n==2:
+        return(b)
+    else:
+        return(fib(n-1)+fib(n-2))
+x=int(input("Enter no of fibonacci terms: "))
+print(fib(x))
+c=x
+l=[]
+while c>0:
+    l.append(fib(c))
+    c=c-1
+print(l)
