@@ -1,0 +1,21 @@
+def romanTOint(r):
+    d_r={"I":1,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000,0:0}
+    l_r=[]
+    num=0
+    sub_case=[["I","V"],["I","X"],["X","L"],["X","C"],["C","D"],["C","M"]]
+    inc=[]
+    for i in r:
+        l_r.append(i)
+    for i in range(len(l_r)-1):
+        if [l_r[i],l_r[i+1]] in sub_case  :
+            num+=d_r[l_r[i+1]]-d_r[l_r[i]]
+            l_r[i]=0
+            l_r[i+1]=0
+    for i in l_r:
+        if i not in inc:
+            num+=d_r[i]
+    print(l_r)
+    print(num)    
+            
+        
+romanTOint("MDCXIII")
