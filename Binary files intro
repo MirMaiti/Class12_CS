@@ -1,0 +1,19 @@
+import pickle
+n=int(input("Enter number of entries:"))
+l=[]
+for i in range(n):
+    k=str(input("Enter admission no: "))
+    v=str(input("Enter name: "))
+    dct={}
+    dct[k]=v
+    l.append(dct)
+    
+fb=open("bin.dat",'wb+')
+for i in range(len(l)):
+    pickle.dump(l[i],fb)
+    
+fb.seek(0)
+for i in range(len(l)):
+    x=pickle.load(fb)
+    print(x)
+fb.close()
