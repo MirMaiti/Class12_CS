@@ -1,0 +1,498 @@
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4
+Server version: 5.1.33-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| adit               |
+| mmnn               |
+| mysql              |
+| ques1              |
+| salary             |
+| test               |
+| wk1q1              |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> use wk1q1;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table Graduate (S_No int, NAME varchar(20),STIPEND int,SUBJECT varchar(30),AVERAGE int, DIV int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DIV int)' at line 1
+mysql> use database adit;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use adit;
+Database changed
+mysql> create table Tutor (ID varchar(2),NAME varchar(20),AGE int,CITY varchar(20), FEE int,PHONE bigint);
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> use wk1q1;
+Database changed
+mysql> create table Graduate (S_NO varchar(4), NAME varchar(20),STIPEND int,SUBJECT varchar(20),AVERAGE int,DIV varchar(2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DIV varchar(2))' at line 1
+mysql> create table Graduate (S_NO int, NAME varchar(20),STIPEND int,SUBJECT varchar(20),AVERAGE int,D_IV int);
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_wk1q1 |
++-----------------+
+| graduate        |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> desc Graduate
+    -> ;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| S_NO    | int(11)     | YES  |     | NULL    |       |
+| NAME    | varchar(20) | YES  |     | NULL    |       |
+| STIPEND | int(11)     | YES  |     | NULL    |       |
+| SUBJECT | varchar(20) | YES  |     | NULL    |       |
+| AVERAGE | int(11)     | YES  |     | NULL    |       |
+| D_IV    | int(11)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.06 sec)
+
+mysql> insert into Graduate values(1,'Karan',400,'Physics',68,1)
+    -> ;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Graduate values(2,'Divakar',450,'Computers',68,1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Graduate values(3,'Divya',300,'Chemistry',62,2);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Graduate values(4,'Arun',350,'Physics',63,1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Graduate values(5,'Sabina',500,'Mathematics',70,1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Graduate values(6,'John',400,'Chemistry',55,2);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Graduate values(7,'Robert',250,'Physics',64,1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Graduate values(8,'Rubina',450,'Mathematics',68,1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Graduate values(8,'Vikas',500,'Computers',62,1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> update Graduate S_NO=9 where NAME=Vikas;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=9 where NAME=Vikas' at line 1
+mysql> update Graduate set S_NO=9 where NAME=Vikas;
+ERROR 1054 (42S22): Unknown column 'Vikas' in 'where clause'
+mysql> update Graduate set S_NO=9 where NAME='Vikas';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Graduate;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
++------+---------+---------+-------------+---------+------+
+9 rows in set (0.00 sec)
+
+mysql> select * from Graduate where subject="Chemistry" or subject="Mathematics";
++------+--------+---------+-------------+---------+------+
+| S_NO | NAME   | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+--------+---------+-------------+---------+------+
+|    3 | Divya  |     300 | Chemistry   |      62 |    2 |
+|    5 | Sabina |     500 | Mathematics |      70 |    1 |
+|    6 | John   |     400 | Chemistry   |      55 |    2 |
+|    8 | Rubina |     450 | Mathematics |      68 |    1 |
++------+--------+---------+-------------+---------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Graduate where AVERAGE>=65 and AVERAGE<=70;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
++------+---------+---------+-------------+---------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into Graduate(10,'Mohan',300,'Mathematics',57,2)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '10,'Mohan',300,'Mathematics',57,2)' at line 1
+mysql> insert into Graduate values(10,'Mohan',300,'Mathematics',57,2);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from Graduate;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Graduate where AVERAGE between 65 and 70;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
++------+---------+---------+-------------+---------+------+
+4 rows in set (0.03 sec)
+
+mysql> select * from Graduate order by NAME;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Graduate order by NAME desc;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Graduate order by STIPEND;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.01 sec)
+
+mysql> select * from Graduate order by STIPEND,NAME;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Graduate order by STIPEND;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Graduate order by STIPEND;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql>
+mysql> select * from Graduate order by STIPEND;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Graduate order by STIPEND;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Graduate order by STIPEND,SUBJECT;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Graduate order by STIPEND,SUBJECT desc;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    2 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from Graduate where SUBJECT like '%C';
+Empty set (0.00 sec)
+
+mysql> select * from Graduate where SUBJECT like '%s';
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    2 |
++------+---------+---------+-------------+---------+------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Graduate where SUBJECT like 'M%';
++------+--------+---------+-------------+---------+------+
+| S_NO | NAME   | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+--------+---------+-------------+---------+------+
+|    5 | Sabina |     500 | Mathematics |      70 |    1 |
+|    8 | Rubina |     450 | Mathematics |      68 |    1 |
+|   10 | Mohan  |     300 | Mathematics |      57 |    2 |
++------+--------+---------+-------------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Graduate where SUBJECT like 'P_____s';
++------+--------+---------+---------+---------+------+
+| S_NO | NAME   | STIPEND | SUBJECT | AVERAGE | D_IV |
++------+--------+---------+---------+---------+------+
+|    1 | Karan  |     400 | Physics |      68 |    1 |
+|    4 | Arun   |     350 | Physics |      63 |    1 |
+|    7 | Robert |     250 | Physics |      64 |    1 |
++------+--------+---------+---------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Graduate where SUBJECT like 'P______s';
+Empty set (0.00 sec)
+
+mysql> select * from Graduate where SUBJECT like '%y%';
++------+--------+---------+-----------+---------+------+
+| S_NO | NAME   | STIPEND | SUBJECT   | AVERAGE | D_IV |
++------+--------+---------+-----------+---------+------+
+|    1 | Karan  |     400 | Physics   |      68 |    1 |
+|    3 | Divya  |     300 | Chemistry |      62 |    2 |
+|    4 | Arun   |     350 | Physics   |      63 |    1 |
+|    6 | John   |     400 | Chemistry |      55 |    2 |
+|    7 | Robert |     250 | Physics   |      64 |    1 |
++------+--------+---------+-----------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> select NAME,SUBJECT,D_IV from Graduate where SUBJECT like 'C%';
++---------+-----------+------+
+| NAME    | SUBJECT   | D_IV |
++---------+-----------+------+
+| Divakar | Computers |    1 |
+| Divya   | Chemistry |    2 |
+| John    | Chemistry |    2 |
+| Vikas   | Computers |    1 |
++---------+-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Graduate where NAME like 'a%n';
++------+------+---------+---------+---------+------+
+| S_NO | NAME | STIPEND | SUBJECT | AVERAGE | D_IV |
++------+------+---------+---------+---------+------+
+|    4 | Arun |     350 | Physics |      63 |    1 |
++------+------+---------+---------+---------+------+
+1 row in set (0.00 sec)
+
+mysql> update Graduate set stipend=stipend+500 where name like '%h%';
+Query OK, 2 rows affected (0.05 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from graduate;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    6 | John    |     900 | Chemistry   |      55 |    2 |
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
+|   10 | Mohan   |     800 | Mathematics |      57 |    2 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> update Graduate set stipend=stipend-500 , d_iv=3 where name like '%h%';
+Query OK, 2 rows affected (0.05 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from graduate;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    5 | Sabina  |     500 | Mathematics |      70 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    3 |
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|    9 | Vikas   |     500 | Computers   |      62 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    3 |
++------+---------+---------+-------------+---------+------+
+10 rows in set (0.00 sec)
+
+mysql> delete from graduate where stipend>480;
+Query OK, 2 rows affected (0.03 sec)
+
+mysql> select * from graduate;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    3 |
+|    7 | Robert  |     250 | Physics     |      64 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    3 |
++------+---------+---------+-------------+---------+------+
+8 rows in set (0.00 sec)
+
+mysql> update graduate set stipend=stipend+stipend*2/100 where name='robert';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from graduate
+    -> ;
++------+---------+---------+-------------+---------+------+
+| S_NO | NAME    | STIPEND | SUBJECT     | AVERAGE | D_IV |
++------+---------+---------+-------------+---------+------+
+|    1 | Karan   |     400 | Physics     |      68 |    1 |
+|    2 | Divakar |     450 | Computers   |      68 |    1 |
+|    3 | Divya   |     300 | Chemistry   |      62 |    2 |
+|    4 | Arun    |     350 | Physics     |      63 |    1 |
+|    6 | John    |     400 | Chemistry   |      55 |    3 |
+|    7 | Robert  |     255 | Physics     |      64 |    1 |
+|    8 | Rubina  |     450 | Mathematics |      68 |    1 |
+|   10 | Mohan   |     300 | Mathematics |      57 |    3 |
++------+---------+---------+-------------+---------+------+
+8 rows in set (0.00 sec)
+
+mysql> select * from graduate where len(name)>5;
+ERROR 1305 (42000): FUNCTION wk1q1.len does not exist
+mysql>
