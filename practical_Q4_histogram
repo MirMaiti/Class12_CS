@@ -1,0 +1,29 @@
+f1=open("myfile.txt",'r+')
+str=" "
+text=""
+while str:
+    str=f1.readline()
+    text+=str
+w_lst=text.split()
+w_un=[]
+for i in w_lst:
+    if w_un.count(i)<1:
+        w_un.append(i)
+#print(w_un)
+w_count=[]
+for i in w_un:
+    c=w_lst.count(i)
+    w_count.append(c)
+#print(w_count)
+dct={}
+for i in range(len(w_un)):
+    dct[w_un[i]]=w_count[i]
+#print(dct)
+
+print(f"Total number of words: {len(w_lst)}")    
+a=list(dct.keys())
+print(f"The number of different words: {len(a)}")
+for k in dct.keys():
+    if dct[k]==max(w_count):
+        print(f"The most common word is: '{k}'")
+f1.close()
