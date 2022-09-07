@@ -26,4 +26,25 @@ print(f"The number of different words: {len(a)}")
 for k in dct.keys():
     if dct[k]==max(w_count):
         print(f"The most common word is: '{k}'")
+
+#b
+print(dct)
+w_length=[]
+for i in range(len(w_un)):
+    w_length.append(len(w_un[i]))
 f1.close()
+def filter_longest_words():
+   print(f"The longest words are: ")
+   for k in dct.keys():    
+       if len(k)==max(w_length):
+           print(k, end=" ")
+filter_longest_words()
+def filter_long_words(n):
+    l=[]
+    for i in range(len(w_un)):
+        if w_length[i]>n:
+            l.append(w_un[i])
+    return(l)
+x=int(input("Enter an integer: "))          
+print(filter_long_words(x))
+            
