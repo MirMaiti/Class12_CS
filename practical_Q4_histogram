@@ -48,3 +48,13 @@ def filter_long_words(n):
 x=int(input("Enter an integer: "))          
 print(filter_long_words(x))
             
+OUTPUT:
+runfile('C:/Users/SCL1/wkQ6histogram.py', wdir='C:/Users/SCL1')
+Total number of words: 21
+The number of different words: 18
+The most common word is: '.'
+{'The': 1, 'brown': 1, 'fox': 1, 'jumped': 1, 'over': 1, 'the': 1, 'big': 1, 'fence': 1, '.': 3, 'Hello': 1, 'hi': 1, 'how': 1, 'are': 1, 'you': 2, 'I': 1, 'am': 1, 'fine': 1, 'thank': 1}
+The longest words are: 
+jumped 
+Enter an integer: 3
+['brown', 'jumped', 'over', 'fence', 'Hello', 'fine', 'thank']
