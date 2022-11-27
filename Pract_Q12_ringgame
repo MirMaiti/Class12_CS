@@ -1,0 +1,36 @@
+def push(stk,e):
+    stk.append(e)
+    
+def pop(stk):
+    if len(stk)==0:
+        return
+    else:
+        return stk.pop()
+    
+def peek(stk):
+    if len(stk)==0:
+        return False
+    else:
+        return stk[len(stk)-1]
+
+def ringgame(n):
+    stk=[]
+    temp=[]
+    for i in range(n):
+        x=float(input("Enter diameter of ring:"))
+        if len(stk)==0:
+            push(stk,x)
+        else:
+            if x>=peek(stk):
+                push(stk,x)
+            else:
+                while x<peek(stk):
+                    push(temp,pop(stk))
+                push(stk,x)
+                while len(temp)>0:
+                    push(stk,pop(temp))
+                    
+    print(f"Ring stack created : {stk}")
+    
+a=int(input("Enter no of rings to enter: "))
+ringgame(a)
